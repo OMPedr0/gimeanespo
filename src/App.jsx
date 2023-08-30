@@ -1,12 +1,14 @@
 import React from "react";
 import './App.css'
 import ComponenteSection from "./Componente/ComponenteSection";
-const App = () =>{
+const App = () => {
 
-    return(
-       <>
-        <ComponenteSection/>
-       </>
+    return (
+        <div >
+            <ComponenteSection />
+        </div>
+
+
     )
 }
-export default App ;
+export default App;
