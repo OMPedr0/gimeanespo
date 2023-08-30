@@ -1,0 +1,63 @@
+*{
+    margin: 1%;
+    padding: .1%;
+}
+
+body{
+    background-color: rgb(4, 22, 141);
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    color: aliceblue;
+}
+
+.componente{
+    background-color: rgb(255, 255, 255);
+    margin: auto;
+    padding: 20px;
+    color: black;
+    width: 500px;
+    height: 250px;
+    border-radius: .5em;
+    display: grid;
+    grid-column: auto;
+    box-shadow: 5px 1px 15px black;
+
+
+    
+    
+}
+.header{
+    text-align: center;
+    font-size: 2em ;
+    border-bottom: 50%;
+    
+   
+}
+
+.returnAPI{
+    
+    color: #ffd700;
+    text-align: center;
+    font-size: 1em;
+   
+}
+
+input[type="submit"]{
+    background-color: rgb(4, 22, 141);
+    padding: .5em;
+    margin: auto;
+    display: grid;
+    width: 20em;
+    text-align: center;
+    border-radius: .2em;
+    box-shadow: 1px 1px 5px black;
+    color: #ffd900;
+    text-align: center;
+    cursor: pointer;
+    transition: .10s;
+}
+
+.buttonsecton:hover{
+    background-color: rgb(1, 12, 84);
+}
+
+
