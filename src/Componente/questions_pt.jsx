@@ -16,7 +16,7 @@ const questions_pt = [
   },
   {
     pergunta: "Quais são os três principais órgãos da União Europeia?",
-    opcoes: ["Parlamento Europeu", "Conselho Europeu", "Comissão Europeia", "Tribunal de Justiça da União Europeia"],
+    opcoes: ["Parlamento Europeu, Conselho Europeu, Comissão Europeia", "Parlamento Europeu, Conselho Europeu, Tribunal de Justiça da União Europeia", "Nações Unidas, Organização Mundial da Saúde, Parlamento Europeu", "Comissão Europeia, Fundo Monetário Internacional, Organização Mundial do Comércio"],
     resposta: "Parlamento Europeu, Conselho Europeu, Comissão Europeia"
   },
   {

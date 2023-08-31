@@ -15,8 +15,8 @@ const questions_en = [
         resposta: "12"
       },
       {
-        pergunta: "What are the three main bodies of the European Union?",
-        opcoes: ["European Parliament", "European Council", "European Commission", "Court of Justice of the European Union"],
+        pergunta: "What are the three main organs of the European Union?",
+        opcoes: ["European Parliament, European Council, European Commission", "European Parliament, European Council, Court of Justice of the European Union", "United Nations, World Health Organization, European Parliament", "European Commission, International Monetary Fund, World Trade Organization"],
         resposta: "European Parliament, European Council, European Commission"
       },
       {
