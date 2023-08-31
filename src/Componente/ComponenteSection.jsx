@@ -87,14 +87,18 @@ export default function Quiz() {
             <section className="w-full md:w-96 bg-white rounded-lg p-4">
                 {showScore ? (
                     <div className="text-center">
-                        <p className="text-black">Quiz completed!</p>
-                        <p className="text-black">Your score: {score}</p>
-
+                        <p className="text-black">
+                            {selectedLanguage === "pt" ? "Quiz concluído!" : "Quiz completed!"}
+                        </p>
+                        <p className="text-black">
+                            {selectedLanguage === "pt" ? "Sua pontuação:" : "Your score:"} {score}
+                        </p>
                         <button
                             className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
                             onClick={restartQuiz}
                         >
-                            Restart Quiz
+                            {selectedLanguage === "pt" ? "Reiniciar Quiz" : "Restart Quiz"}
+
                         </button>
                     </div>
                 ) : (
@@ -112,17 +116,17 @@ export default function Quiz() {
                                     </p>
                                 ) : (
                                     <p className="text-red-500">
-                                    {selectedLanguage === "pt"
-                                        ? "Resposta incorreta. A resposta correta é:"
-                                        : "Incorrect answer. The correct answer is:"}{" "}
-                                    {showCorrectAnswer}
-                                </p>
+                                        {selectedLanguage === "pt"
+                                            ? "Resposta incorreta. A resposta correta é:"
+                                            : "Incorrect answer. The correct answer is:"}{" "}
+                                        {showCorrectAnswer}
+                                    </p>
                                 )}
                                 <button
                                     className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
                                     onClick={nextQuestion}
                                 >
-                                      {selectedLanguage === "pt" ? "Próxima pergunta" : "Next question"}
+                                    {selectedLanguage === "pt" ? "Próxima pergunta" : "Next question"}
                                 </button>
                             </div>
                         )}
