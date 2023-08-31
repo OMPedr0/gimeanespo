@@ -1,4 +1,4 @@
-const questions = [
+const questions_pt = [
     {
       pergunta: "Qual é a capital da França?",
       opcoes: ["Londres", "Paris", "Madrid", "Berlim"],
@@ -77,5 +77,5 @@ const questions = [
 
   ];
   
-  export default questions;
+  export default questions_pt;
   
