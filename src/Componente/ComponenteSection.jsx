@@ -52,7 +52,7 @@ export default function Quiz(props) {
 
     return (
         <div className="flex flex-col items-center p-4">
-            <p className="text-xl mb-4">Jogo de Perguntas - Europa</p>
+            {selectedLanguage === "pt" ? "Jogo de Perguntas - Europa" : "Quiz Questions - Europe"}
             <div className="flex space-x-4">
                 <button
                     onClick={() => setSelectedLanguage('pt')}
