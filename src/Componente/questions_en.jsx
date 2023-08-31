@@ -1,79 +1,54 @@
 const questions_en = [
     {
-        pergunta: "What is the capital of France?",
-        opcoes: ["London", "Paris", "Madrid", "Berlin"],
-        resposta: "Paris",
-    },
-    {
-        pergunta: "What is the largest river in Europe?",
-        opcoes: ["Rhine", "Danube", "Seine", "Volga"],
-        resposta: "Volga",
-    },
-    {
-        pergunta: "What is the highest point in Europe?",
-        opcoes: ["Mount Elbrus", "Mount Everest", "Mount Kilimanjaro", "Mount Fuji"],
-        resposta: "Mount Elbrus",
-    },
-    {
-        pergunta: "Which countries make up the United Kingdom?",
-        opcoes: ["England, France, Germany", "Scotland, Wales, Northern Ireland", "Spain, Italy, Portugal", "Netherlands, Belgium, Luxembourg"],
-        resposta: "Scotland, Wales, Northern Ireland",
-    },
-    {
-        pergunta: "What is the name of the currency used in the European Union?",
-        opcoes: ["Dollar", "British Pound", "Euro", "Yen"],
-        resposta: "Euro",
-    },
-    {
-        pergunta: "Which two Nordic countries are not part of the European Union?",
-        opcoes: ["Sweden and Finland", "Norway and Iceland", "Denmark and Norway", "Finland and Iceland"],
-        resposta: "Norway and Iceland",
-    },
-    {
-        pergunta: "Which European city is famous for hosting the headquarters of the European Union and NATO?",
-        opcoes: ["Paris", "Brussels", "Amsterdam", "Rome"],
-        resposta: "Brussels",
-    },
-    {
-        pergunta: "Which European country is known for having a geographical shape resembling a boot?",
-        opcoes: ["Greece", "Italy", "Spain", "Portugal"],
-        resposta: "Italy",
-    },
-    {
-        pergunta: "What is the famous wall that separated the Roman Empire from barbarian tribes and is now a tourist attraction?",
-        opcoes: ["Hadrian's Wall", "Constantinople Wall", "Jerusalem Wall", "Alexandria Wall"],
-        resposta: "Hadrian's Wall",
-    },
-    {
-        pergunta: "What is the name of the high-speed train system that connects various European cities?",
-        opcoes: ["TGV", "ICE", "AVE", "Shinkansen"],
-        resposta: "TGV",
-    },
-    {
-        pergunta: "Which European city is famous for housing the Louvre Museum, one of the largest and most famous museums in the world?",
-        opcoes: ["Rome", "Barcelona", "Paris", "Vienna"],
-        resposta: "Paris",
-    },
-    {
-        pergunta: "In which European country can you find the famous canals of Venice?",
-        opcoes: ["France", "Spain", "Italy", "Netherlands"],
-        resposta: "Italy",
-    },
-    {
-        pergunta: "Which European country is known for its beautiful natural landscapes, including the fjords?",
-        opcoes: ["Switzerland", "Norway", "Austria", "Sweden"],
-        resposta: "Norway",
-    },
-    {
-        pergunta: "What is the name of the mountain range that separates Europe from Asia and is famous for being a historical and geographical landmark?",
-        opcoes: ["Carpathian Mountains", "Ural Mountains", "Alps Mountains", "Pyrenees Mountains"],
-        resposta: "Ural Mountains",
-    },
-    {
-        pergunta: "What is the name of the former Italian currency that was replaced by the Euro in 2002?",
-        opcoes: ["Lira", "Mark", "Franc", "Peseta"],
-        resposta: "Lira",
-    },
+        pergunta: "When did Portugal integrate into the European Economic Community (EEC)?",
+        opcoes: ["1975", "1986", "1991", "2001"],
+        resposta: "1986"
+      },
+      {
+        pergunta: "Which treaty established the European Union (EU) in its current form?",
+        opcoes: ["Treaty of Maastricht", "Treaty of Lisbon", "Treaty of Rome", "Treaty of Paris"],
+        resposta: "Treaty of Maastricht"
+      },
+      {
+        pergunta: "How many member countries were part of the European Union when Portugal joined?",
+        opcoes: ["10", "12", "15", "20"],
+        resposta: "12"
+      },
+      {
+        pergunta: "What are the three main bodies of the European Union?",
+        opcoes: ["European Parliament", "European Council", "European Commission", "Court of Justice of the European Union"],
+        resposta: "European Parliament, European Council, European Commission"
+      },
+      {
+        pergunta: "What was the main objective of creating the European Economic Community (EEC)?",
+        opcoes: ["Establishing a single currency", "Promoting military cooperation", "Ensuring the free movement of goods", "Promoting education"],
+        resposta: "Ensuring the free movement of goods"
+      },
+      {
+        pergunta: "Which countries are the founding members of the European Economic Community (EEC)?",
+        opcoes: ["France, Germany, Italy, Belgium, Luxembourg, Netherlands", "United Kingdom, France, Spain, Portugal, Italy", "Germany, Austria, Sweden, Denmark, Finland, Ireland", "Greece, Turkey, Cyprus, Malta"],
+        resposta: "France, Germany, Italy, Belgium, Luxembourg, Netherlands"
+      },
+      {
+        pergunta: "What is the common currency used by many countries in the European Union?",
+        opcoes: ["US Dollar", "British Pound", "Euro", "Swiss Franc"],
+        resposta: "Euro"
+      },
+      {
+        pergunta: "What is the Schengen Area?",
+        opcoes: ["A student exchange program", "A free trade zone between the EU and the United States", "An area of free movement of people without border checks", "A joint space project of the EU"],
+        resposta: "An area of free movement of people without border checks"
+      },
+      {
+        pergunta: "What is the role of the European Commission in the European Union?",
+        opcoes: ["Creating national laws for member countries", "Representing the EU in trade negotiations", "Ensuring the military security of the EU", "Proposing new laws, overseeing treaties, and implementing EU policies"],
+        resposta: "Proposing new laws, overseeing treaties, and implementing EU policies"
+      },
+      {
+        pergunta: "Besides the European Union, what is another political organization in Europe?",
+        opcoes: ["NATO", "UNESCO", "OPEC", "ASEAN"],
+        resposta: "NATO"
+      }
 ];
 
 export default questions_en;
