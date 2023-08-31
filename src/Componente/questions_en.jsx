@@ -48,7 +48,7 @@ const questions_en = [
         pergunta: "Besides the European Union, what is another political organization in Europe?",
         opcoes: ["NATO", "UNESCO", "OPEC", "ASEAN"],
         resposta: "NATO"
-      }
+      },
 ];
 
 export default questions_en;

@@ -48,7 +48,7 @@ const questions_pt = [
     pergunta: "Além da União Europeia, qual é outra organização política da Europa?",
     opcoes: ["NATO", "UNESCO", "OPEP", "ASEAN"],
     resposta: "NATO"
-  }
+  },
 
   ];
   
