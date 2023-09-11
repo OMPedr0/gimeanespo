@@ -1,142 +1,147 @@
-import React, { useState, useEffect } from "react";
-import ButoonsEscolha from "./ButoonsEscolha";
+import React, { useState, useEffect } from 'react';
 
-import questions_pt from "./questions_pt"; // Portuguese questions
-import questions_en from "./questions_en"; // English questions
+function Quiz() {
+  const [questions, setQuestions] = useState([]);
+  const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+  const [score, setScore] = useState(0);
+  const [loading, setLoading] = useState(true); // Estado de carregamento
+  const [showQuestions, setShowQuestions] = useState(true); // Estado para controlar a exibição das perguntas
+  const [currentQuestion, setCurrentQuestion] = useState(null); // Defina currentQuestion como estado
 
-const languageQuestions = {
-    pt: questions_pt,
-    en: questions_en,
-    // Add more languages as needed
-};
+  const apiKey = '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';
 
-export default function Quiz() {
-    const [currentQuestion, setCurrentQuestion] = useState(0);
-    const [score, setScore] = useState(0);
-    const [showScore, setShowScore] = useState(false);
-    const [showCorrectAnswer, setShowCorrectAnswer] = useState(false);
-    const [selectedLanguage, setSelectedLanguage] = useState("pt");
+  const fetchQuestionAndOptionsFromOpenAI = async () => {
+    setLoading(true); // Defina o estado de carregamento para true ao iniciar a busca
 
-    const selectedLanguageQuestions = languageQuestions[selectedLanguage];
-    const totalQuestions = selectedLanguageQuestions.length;
+    try {
+      const messages = [
+        { role: 'system', content: 'Você é um quiz bot em ingles.' },
+        { role: 'user', content: 'Crie uma pergunta de quiz para mim sobre a importância da União Europeia (UE) nas nossas vidas em ingles.' },
+        { role: 'assistant', content: 'Dê-me quatro opções de resposta em ingles.' },
+      ];
 
-    const handleOptionSelect = (selectedOption) => {
-        const correctAnswer = selectedLanguageQuestions[currentQuestion].resposta;
+      const response = await fetch('https://api.openai.com/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${apiKey}`,
+        },
+        body: JSON.stringify({
+          model: 'gpt-3.5-turbo',
+          messages,
+        }),
+      });
 
-        if (selectedOption === correctAnswer) {
-            setScore(score + 1);
-            setShowCorrectAnswer("correct");
-        } else {
-            setShowCorrectAnswer(correctAnswer);
-        }
+      if (!response.ok) {
+        throw new Error('Erro ao carregar pergunta e opções de resposta');
+      }
 
-        if (currentQuestion < totalQuestions - 1) {
-            setCurrentQuestion(currentQuestion + 1);
-        } else {
-            setShowScore(true);
-        }
+      const responseData = await response.json();
+      console.log(responseData);
+      const assistantResponse = responseData.choices[0].message.content;
 
+      const responseLines = assistantResponse.split('\n\n');
 
-    };
+      const question = responseLines[1].trim();
 
-    useEffect(() => {
-        setCurrentQuestion(0);
-        setScore(0);
-        setShowScore(false);
-    }, [selectedLanguage]);
+      const responseLines2 = assistantResponse.split('\n');
 
-    const nextQuestion = () => {
-        if (currentQuestion < totalQuestions - 1) {
-            setCurrentQuestion(currentQuestion + 1);
-        } else {
-            setShowScore(true); // All questions answered, show score
-        }
-    };
+      let optionsStartIndex = responseLines2.findIndex(line => /^[a-z]\)/i.test(line));
 
-    const restartQuiz = () => {
-        setCurrentQuestion(0);
-        setScore(0);
-        setShowScore(false);
-    };
+      if (optionsStartIndex === -1) {
+        optionsStartIndex = 2;
+      }
 
+      const options = responseLines2.slice(optionsStartIndex, optionsStartIndex + 4).map(line => line.trim());
+
+      setQuestions([
+        ...questions,
+        {
+          question,
+          options,
+        },
+      ]);
+
+      setCurrentQuestion({ question, options }); // Defina o estado currentQuestion
+      setLoading(false); // Defina o estado de carregamento para false após receber a resposta
+    } catch (error) {
+      console.error('Erro ao carregar pergunta e opções de resposta:', error);
+      setLoading(false); // Certifique-se de definir o estado de carregamento para false em caso de erro
+    }
+  };
+
+  useEffect(() => {
+    fetchQuestionAndOptionsFromOpenAI();
+  }, []);
+
+  const handleAnswerClick = (isCorrect) => {
+    if (isCorrect) {
+      setScore(score + 1);
+    }
+
+    if (currentQuestionIndex < 9) {
+      setCurrentQuestionIndex(currentQuestionIndex + 1);
+      fetchQuestionAndOptionsFromOpenAI();
+    } else {
+      // Após responder a última pergunta, ocultar as perguntas
+      setShowQuestions(false);
+    }
+  };
+
+  if (loading) {
     return (
-        <div className="flex flex-col items-center p-4">
-            <h1>
-                {selectedLanguage === "pt" ? "Jogo de Perguntas - Europa" : "Quiz Questions - Europe"}
-            </h1>
-            <div className="flex space-x-4">
-                <button
-                    onClick={() => setSelectedLanguage("pt")}
-                    className={`language-button ${selectedLanguage === "pt"
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-300 text-gray-800"
-                        } py-2 px-4 rounded`}
-                >
-                    Portuguese
-                </button>
-                <button
-                    onClick={() => setSelectedLanguage("en")}
-                    className={`language-button ${selectedLanguage === "en"
-                        ? "bg-blue-500 text-white"
-                        : "bg-gray-300 text-gray-800"
-                        } py-2 px-4 rounded`}
-                >
-                    English
-                </button>
-            </div>
-            <section className="w-full md:w-96 bg-white rounded-lg p-4">
-                {showScore ? (
-                    <div className="text-center">
-                        <p className="text-black">
-                            {selectedLanguage === "pt" ? "Quiz concluído!" : "Quiz completed!"}
-                        </p>
-                        <p className="text-black">
-                            {selectedLanguage === "pt" ? "Sua pontuação:" : "Your score:"} {score}
-                        </p>
-                        <button
-                            className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-                            onClick={restartQuiz}
-                        >
-                            {selectedLanguage === "pt" ? "Reiniciar Quiz" : "Restart Quiz"}
+      <div className="container mx-auto p-4 text-center">
+        <div className="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-blue-500 mx-auto mb-4"></div>
+        <p className="text-lg">Loading next question...</p>
+      </div>
+    );
+  }
+  
 
-                        </button>
-                    </div>
-                ) : (
-                    <div>
-                        <ButoonsEscolha
-                            pergunta={selectedLanguageQuestions[currentQuestion].pergunta}
-                            opcoes={selectedLanguageQuestions[currentQuestion].opcoes}
-                            onOptionSelect={handleOptionSelect}
-                        />
-                        {showCorrectAnswer && (
-                            <div className="text-center mt-2">
-                                {showCorrectAnswer === "correct" ? (
-                                    <p className="text-green-500">
-                                        {selectedLanguage === "pt" ? "Resposta correta" : "Correct answer"}
-                                    </p>
-                                ) : (
-                                    <p className="text-red-500">
-                                        {selectedLanguage === "pt"
-                                            ? "Resposta incorreta. A resposta correta é:"
-                                            : "Incorrect answer. The correct answer is:"}{" "}
-                                        {showCorrectAnswer}
-                                    </p>
-                                )}
-                                <button
-                                    className="mt-2 bg-blue-500 text-white py-2 px-4 rounded"
-                                    onClick={nextQuestion}
-                                >
-                                    {selectedLanguage === "pt" ? "Próxima pergunta" : "Next question"}
-                                </button>
-                            </div>
-                        )}
-                    </div>
-                )}
-            </section>
-
-            <div className="flex justify-center mt-4">
+  if (showQuestions) {
+    return (
+      <div className="container mx-auto p-4 bg-white rounded-lg shadow-lg">
+        <h2 className="text-2xl font-semibold mb-4 text-black">Question {currentQuestionIndex + 1}</h2>
+        <p className="text-lg mb-6 text-black">{currentQuestion && currentQuestion.question}</p>
+        <div className="grid grid-cols-2 gap-4">
+          {currentQuestion &&
+            currentQuestion.options.map((option, index) => (
+              <button
+                key={index}
+                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                onClick={() => handleAnswerClick(option.toLowerCase() === 'verdadeiro')}
+              >
+                {option}
+              </button>
+            ))}
+        </div>
+        <div className="flex justify-center mt-4">
                 <img src="/logo.png" alt="Logo" className="h-16" />
             </div>
-        </div>
+      </div>
     );
+  } else {
+    return (
+      <div className="container mx-auto p-4 bg-white rounded-lg shadow-lg">
+        <h1 className="text-2xl font-bold mb-4 text-black">Final Score: {score}/10</h1>
+        <button
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+          onClick={() => {
+            setCurrentQuestionIndex(0);
+            setScore(0);
+            setQuestions([]);
+            setShowQuestions(true);
+          }}
+        >
+          Restart
+        </button>
+        <div className="flex justify-center mt-4">
+                <img src="/logo.png" alt="Logo" className="h-16" />
+            </div>
+      </div>
+    );
+  }
+  
 }
+
+export default Quiz;
