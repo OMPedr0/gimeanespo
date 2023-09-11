@@ -15,9 +15,9 @@ function Quiz() {
 
     try {
       const messages = [
-        { role: 'system', content: 'Você é um quiz bot em ingles.' },
-        { role: 'user', content: 'Crie uma pergunta de quiz para mim sobre a importância da União Europeia (UE) nas nossas vidas em ingles.' },
-        { role: 'assistant', content: 'Dê-me quatro opções de resposta em ingles.' },
+        { role: 'system', content: 'Você é um quiz bot.' },
+        { role: 'user', content: 'Em ingles crie uma pergunta de quiz para mim sobre a importância da União Europeia (UE) nas nossas vidas.' },
+        { role: 'assistant', content: 'Em ingles dê-me quatro opções de resposta em ingles.' },
       ];
 
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
