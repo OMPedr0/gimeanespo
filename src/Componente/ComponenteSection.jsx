@@ -8,16 +8,18 @@ function Quiz() {
   const [showQuestions, setShowQuestions] = useState(true); // Estado para controlar a exibição das perguntas
   const [currentQuestion, setCurrentQuestion] = useState(null); // Defina currentQuestion como estado
 
-  const apiKey = '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';
+  const apiKey = process.env.REACT_APP_API_KEY;
+
+
 
   const fetchQuestionAndOptionsFromOpenAI = async () => {
     setLoading(true); // Defina o estado de carregamento para true ao iniciar a busca
 
     try {
       const messages = [
-        { role: 'system', content: 'Você é um quiz bot em ingles.' },
+        { role: 'system', content: 'Você é um quiz bot.' },
         { role: 'user', content: 'Crie uma pergunta de quiz para mim sobre a importância da União Europeia (UE) nas nossas vidas em ingles.' },
-        { role: 'assistant', content: 'Dê-me quatro opções de resposta em ingles.' },
+        { role: 'assistant', content: 'Dê-me quatro opções de resposta.' },
       ];
 
       const response = await fetch('https://api.openai.com/v1/chat/completions', {
@@ -96,7 +98,7 @@ function Quiz() {
       </div>
     );
   }
-  
+
 
   if (showQuestions) {
     return (
@@ -116,8 +118,8 @@ function Quiz() {
             ))}
         </div>
         <div className="flex justify-center mt-4">
-                <img src="/logo.png" alt="Logo" className="h-16" />
-            </div>
+          <img src="/logo.png" alt="Logo" className="h-16" />
+        </div>
       </div>
     );
   } else {
@@ -136,12 +138,12 @@ function Quiz() {
           Restart
         </button>
         <div className="flex justify-center mt-4">
-                <img src="/logo.png" alt="Logo" className="h-16" />
-            </div>
+          <img src="/logo.png" alt="Logo" className="h-16" />
+        </div>
       </div>
     );
   }
-  
+
 }
 
 export default Quiz;
