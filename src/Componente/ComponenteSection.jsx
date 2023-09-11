@@ -39,7 +39,7 @@ function Quiz() {
       }
 
       const responseData = await response.json();
-      console.log(responseData);
+     
       const assistantResponse = responseData.choices[0].message.content;
 
       const responseLines = assistantResponse.split('\n\n');
